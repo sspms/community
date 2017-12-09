@@ -33,9 +33,8 @@ pipeline {
                 script {
                     def date = new Date().format('yyyyMMddhhmmssSSS')
                     sh """
-cd ${env.BUILD_REPO_PATH}
-if[! -d community]; then
-    mkdir community
+if [ ! -d ${env.BUILD_REPO_PATH}/community ]; then
+    mkdir ${env.BUILD_REPO_PATH}/community
 fi
 yes | cp -rf ./target/community*.jar ${env.BUILD_REPO_PATH}/community/community.jar
 yes | cp -rf community.dockerfile ${env.BUILD_REPO_PATH}/community
