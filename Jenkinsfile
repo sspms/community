@@ -33,9 +33,9 @@ pipeline {
                 script {
                     def date = new Date().format('yyyyMMddhhmmssSSS')
                     sh """
-yes | cp -rf ./target/community*.jar ${env.BUILD_REPO_PATH}/community.jar
-yes | cp -rf community.dockerfile ${env.BUILD_REPO_PATH}/
-yes | cp -rf docker-compose.yml ${env.BUILD_REPO_PATH}/
+yes | cp -rf ./target/community*.jar ${env.BUILD_REPO_PATH}/community/community.jar
+yes | cp -rf community.dockerfile ${env.BUILD_REPO_PATH}/community
+yes | cp -rf docker-compose.yml ${env.BUILD_REPO_PATH}/community
 """
                     currentBuild.rawBuild.displayName = date
                 }
