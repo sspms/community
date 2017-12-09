@@ -1,0 +1,29 @@
+version: '3'
+services:
+  user:
+    build:
+      context: .
+      dockerfile: community.dockerfile
+    links:
+      - mysqldb
+      - redisdb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/community
+      SPRING_REDIS_HOST: redisdb
+      SERVER_ADDRESS: community
+    ports:
+      - "18080:8080"
+  redisdb:
+    image: registry.docker-cn.com/library/redis:alpine
+    ports:
+      - "6379:6379"
+  mysqldb:
+    image: registry.docker-cn.com/library/mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+

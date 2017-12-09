@@ -1,0 +1,22 @@
+# Server settings (ServerProperties)
+server:
+  port: 8081
+  address: 127.0.0.1
+  sessionTimeout: 30
+  contextPath: /
+
+  # Tomcat specifics
+  tomcat:
+    accessLogEnabled: false
+    protocolHeader: x-forwarded-proto
+    remoteIpHeader: x-forwarded-for
+    basedir:
+    backgroundProcessorDelay: 30 # secs
+
+security:
+  basic:
+    enabled: false
+
+spring:
+  profiles:
+    active: ci
