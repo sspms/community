@@ -36,7 +36,7 @@ pipeline {
 if [ ! -d ${env.BUILD_REPO_PATH}/community ]; then
     mkdir ${env.BUILD_REPO_PATH}/community
 fi
-yes | cp -rf ./target/community*.jar ${env.BUILD_REPO_PATH}/community/community.jar
+yes | cp -rf ./target/community*exec.jar ${env.BUILD_REPO_PATH}/community/community.jar
 yes | cp -rf community.dockerfile ${env.BUILD_REPO_PATH}/community
 yes | cp -rf docker-compose.yml ${env.BUILD_REPO_PATH}/community
 """
