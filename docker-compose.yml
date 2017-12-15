@@ -12,7 +12,7 @@ services:
       SPRING_REDIS_HOST: redisdb
       SERVER_ADDRESS: community
     ports:
-      - "18080:8080"
+      - "18081:8080"
   redisdb:
     image: registry.docker-cn.com/library/redis:alpine
     ports:
