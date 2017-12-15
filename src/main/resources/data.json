@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "name": "小上海新城",
+  "city": "Shanghai",
+  "province": "Shanghai",
+  "district": "周浦",
+  "location": "No.1 Rd PuDong",
+  "developer": "LVDI",
+  "completionDate": null,
+  "greenRate": 0.32,
+  "capacityRate": 2.2,
+  "parkingLotNumber": 112,
+  "buildingNumber": 21,
+  "houseHoldNumber": 334,
+  "layoutLink": null,
+  "description": "XDS",
+  "yellowPage": null
+}

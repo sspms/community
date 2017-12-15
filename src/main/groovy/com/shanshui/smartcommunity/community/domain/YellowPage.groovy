@@ -12,8 +12,9 @@ class YellowPage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id
-    String disctrict
+    String district
     @OneToMany
     @JoinColumn(name = 'id')
     List<PublicService> services
+    String description
 }

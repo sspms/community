@@ -11,8 +11,8 @@ class Community implements Serializable {
     String name
     String city
     String province
-    String disctrict
-    @Column(unique = true, nullable = false)
+    String district
+    @Column(unique = true, nullable = true)
     String location
     String developer
     //PropertyCompany propertyMngm
@@ -25,6 +25,6 @@ class Community implements Serializable {
     int houseHoldNumber
     String layoutLink
     String description
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     YellowPage yellowPage
 }

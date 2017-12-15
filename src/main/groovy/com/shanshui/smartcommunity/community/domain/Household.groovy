@@ -1,14 +1,14 @@
 package com.shanshui.smartcommunity.community.domain
 
 import javax.persistence.*
-
+import com.shanshui.smartcommunity.user.domain.User
 @Entity
 class Household implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id
     String number
-    //User owner
+    User owner
     double area
     @ManyToOne
     Building building
