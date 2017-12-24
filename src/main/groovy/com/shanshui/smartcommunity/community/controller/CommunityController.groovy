@@ -2,6 +2,7 @@ package com.shanshui.smartcommunity.community.controller
 
 import com.shanshui.smartcommunity.community.domain.Building
 import com.shanshui.smartcommunity.community.domain.Community
+import com.shanshui.smartcommunity.community.domain.Household
 import com.shanshui.smartcommunity.community.service.BuildingService
 import com.shanshui.smartcommunity.community.service.CommunityService
 import com.shanshui.smartcommunity.community.service.HouseholdService
@@ -21,21 +22,21 @@ import org.springframework.web.bind.annotation.*
 @EnableCaching
 class CommunityController {
 
-    @Autowired
-    CommunityService communityService
-    @Autowired
-    BuildingService buildingService
+    //@Autowired
+    //CommunityService communityService
+    //@Autowired
+    //BuildingService buildingService
     @Autowired
     HouseholdService householdService
 
     @RequestMapping(method = RequestMethod.POST)
     def put(@RequestBody Community community) {
-        communityService.communityRepository.save(community)
+        householdService.communityService.communityRepository.save(community)
     }
 
     @RequestMapping(method = RequestMethod.GET)
     def get() {
-        communityService.communityRepository.findAll()
+        householdService.communityService.communityRepository.findAll()
     }
     /**
      * internal used for services
@@ -45,44 +46,59 @@ class CommunityController {
      */
     @RequestMapping(value = '/{id}', method = [RequestMethod.GET])
     def get(@PathVariable('id') Long id) {
-        id ? communityService.communityRepository.findOne(id) : null
+        id ? householdService.communityService.communityRepository.findOne(id) : null
     }
 
     @RequestMapping(value = '/{id}/building/{bid}', method = RequestMethod.GET)
     @ResponseBody
-    def getBuilding(@PathVariable('id') Long id, @PathVariable('bid') Long bid) {
-        id && bid ? buildingService.find(id, bid.toString()) : null
+    def getBuilding(@PathVariable('id') Long id, @PathVariable('bid') String bid) {
+        id && bid ? householdService.buildingService.find(id, bid) : null
     }
 
     @RequestMapping(value = '/{id}/building', method = RequestMethod.POST)
     @ResponseBody
     def putBuilding(@PathVariable('id') Long id, @RequestBody Building building) {
-        id && building ? buildingService.buildingRepository.save(building) : null
+        id && building ? householdService.buildingService.add(id, building) : null
     }
 
     @RequestMapping(value = '/{id}/building', method = RequestMethod.GET)
     @ResponseBody
     def getBuilding(@PathVariable('id') Long id) {
-        id ? buildingService.buildingRepository.findAll(id): null
+        id ? householdService.buildingService.buildingRepository.findAll(id) : null
+    }
+
+    @RequestMapping(value = '/{id}/building/{bid}/household', method = RequestMethod.POST)
+    @ResponseBody
+    def putHousehold(@PathVariable('id') Long id, @PathVariable('bid') String bid, @RequestBody Household household) {
+        def building = id && bid ? getBuilding(id, bid) : null
+        building ? householdService.householdRepository.save(household) : null
     }
 
     @RequestMapping(value = '/{id}/building/{bid}/household', method = RequestMethod.GET)
     @ResponseBody
-    def getHousehold(@PathVariable('id') Long id, @PathVariable('bid') Long bid) {
+    def getHousehold(@PathVariable('id') Long id, @PathVariable('bid') String bid) {
         def building = id && bid ? getBuilding(id, bid) : null
         building ? householdService.getAllHouseholds(building) : null
     }
 
     @RequestMapping(value = '/{id}/building/{bid}/household/{hid}', method = RequestMethod.GET)
     @ResponseBody
-    def getHousehold(@PathVariable('id') Long id, @PathVariable('bid') Long bid, @PathVariable('hid') long hid) {
-        hid ? householdService.householdRepository.findOne(hid) : null
+    def getHousehold(@PathVariable('id') Long id, @PathVariable('bid') String bid, @PathVariable('hid') String hid) {
+        id && bid && hid ? householdService.getHousehold(id, bid, hid) : null
+    }
+
+    @RequestMapping(value = '/{id}/household', method = RequestMethod.GET)
+    @ResponseBody
+    def getHousehold(@PathVariable('id') Long id) {
+        def community = id ? get(id) : null
+        community ? householdService.getAllHouseholds(community) : null
     }
 
     @RequestMapping(value = '/{id}/building/{bid}/household/{hid}', method = RequestMethod.POST)
-    def certify(@PathVariable('id') Long id, @PathVariable('bid') Long bid, @PathVariable('hid') long hid, User user) {
+    def certify(
+            @PathVariable('id') Long id, @PathVariable('bid') String bid, @PathVariable('hid') String hid, User user) {
         def household = getHousehold(id, bid, hid)
-        householdService.certifyOwner(household, user)
+        householdService.certifyOwner(household, user.id.toString())
     }
 
     public static void main(String[] args) {

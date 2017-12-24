@@ -14,9 +14,9 @@ public interface CommunityRepository extends CrudRepository<Community, Long> {
     @Query('select c from Community c where c.location = ?1')
     Community findByLocation(String location)
 
-    @Query('select c from Community c where c.name like $1')
+    @Query('select c from Community c where c.name like ?1')
     List<Community> findPattern(String namePattern)
 
-    @Query('select c from Community c where c.province= $1 and c.city = $2 and c.district = $3')
+    @Query('select c from Community c where c.province= ?1 and c.city = ?2 and c.district = ?3')
     List<Community> findAll(String province, String city, String district)
 }

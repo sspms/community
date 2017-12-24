@@ -8,15 +8,15 @@ import org.springframework.data.repository.CrudRepository
  */
 public interface BuildingRepository extends CrudRepository<Building, Long> {
 
-    @Query('select b from Building b where b.community = ?1 and b.number = ?2')
+    @Query('select b from Building b where b.community.id = ?1 and b.number = ?2')
     Building find(long community, String number)
 
-    @Query('select b from Building b where b.community = ?1')
+    @Query('select b from Building b where b.community.id = ?1')
     List<Building> findAll(long community)
 
-    @Query('select b from Building b where b.community = $1 and b.type = $2')
+    @Query('select b from Building b where b.community.id = ?1 and b.type = ?2')
     List<Building> findAllByType(long community, String type)
 
-    @Query('select b from Building b where b.leader = ?1')
+    @Query('select b from Building b where b.leader.id = ?1')
     List<Building> findAll(String leader)
 }

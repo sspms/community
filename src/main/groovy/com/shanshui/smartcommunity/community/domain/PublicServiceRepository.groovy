@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository
  */
 public interface PublicServiceRepository extends CrudRepository<PublicService, Long> {
 
-    @Query('select ps from PublicService ps where ps.district = $1')
+    @Query('select ps from PublicService ps where ps.district = ?1')
     List<PublicService> findAll(String district)
 }

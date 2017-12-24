@@ -21,9 +21,9 @@ class Building implements Serializable {
     String number
     @ManyToOne(targetEntity = Community.class)
     Community community
-    @OneToMany(targetEntity = Household)
+    //@OneToMany(targetEntity = Household.class)
     //@JoinColumn(name = 'id')
-    List<Household> households
+    //List<Household> households
     int totalHouseholds
     @Enumerated(EnumType.STRING)
     BuildingType type

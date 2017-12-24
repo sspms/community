@@ -25,10 +25,28 @@ class HouseholdService {
     @Autowired
     CommunityService communityService
 
+    @Autowired
+    BuildingService buildingService
+
+    def add(long cid, long bid, Household household) {
+        if (cid != household.community.id || bid != household.building.id) {
+            return new IllegalArgumentException("community id or building id doesn't match with the household")
+        }
+        if (getHousehold(cid, bid, household.number)) {
+            return null
+        }
+        householdRepository.save(household)
+    }
+
     def certifyOwner(Household houseHold, String userId) {
         householdRepository.updateUser(houseHold.id, userId)
         LOGGER.info("$houseHold owner has been updated with user ID $userId")
-        householdRepository.findOne(houseHold.id)?.owner.id = userId
+        householdRepository.findOne(houseHold.id)?.owner.id == userId
+    }
+
+    Household getHousehold(long community, String buildNumber, String householdNumber) {
+        def building = community && buildNumber ? buildingService.find(community, buildNumber) : null
+        building ? householdRepository.find(community, building.id, householdNumber) : null
     }
 
     List<Household> getAllHouseholds(Building building) {

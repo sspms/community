@@ -1,5 +1,6 @@
 package com.shanshui.smartcommunity.community.service
 
+import com.shanshui.smartcommunity.community.controller.CommunityController
 import com.shanshui.smartcommunity.community.domain.Building
 import com.shanshui.smartcommunity.community.domain.BuildingRepository
 import com.shanshui.smartcommunity.community.domain.BuildingType
@@ -19,6 +20,10 @@ import org.springframework.stereotype.Service
 class BuildingService {
     @Autowired
     BuildingRepository buildingRepository
+
+    def add(long community, Building building) {
+        find(community,building.number) ? null : buildingRepository.save(building)
+    }
 
     List<Building> findAll(Community community) {
         buildingRepository.findAll(community.id)

@@ -22,7 +22,7 @@ class CommunityService {
     }
 
     def add(Community community) {
-        communityRepository.save(community)
+        find(community.name) ? null : communityRepository.save(community)
     }
     private static final Logger LOGGER = LoggerFactory.getLogger(DynamicCodeService.class)
 }
