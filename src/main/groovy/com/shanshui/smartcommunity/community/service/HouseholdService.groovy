@@ -5,7 +5,6 @@ import com.shanshui.smartcommunity.community.domain.Community
 import com.shanshui.smartcommunity.community.domain.Household
 import com.shanshui.smartcommunity.community.domain.HouseholdRepository
 import com.shanshui.smartcommunity.user.domain.User
-import com.shanshui.smartcommunity.user.service.DynamicCodeService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -81,5 +80,5 @@ class HouseholdService {
         householdRepository.findNotCertified(community.id)
     }
     //List<Household>
-    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicCodeService.class)
+    private static final Logger LOGGER = LoggerFactory.getLogger(HouseholdService.class)
 }

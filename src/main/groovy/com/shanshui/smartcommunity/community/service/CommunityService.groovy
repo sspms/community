@@ -2,7 +2,6 @@ package com.shanshui.smartcommunity.community.service
 
 import com.shanshui.smartcommunity.community.domain.Community
 import com.shanshui.smartcommunity.community.domain.CommunityRepository
-import com.shanshui.smartcommunity.user.service.DynamicCodeService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,5 +23,5 @@ class CommunityService {
     def add(Community community) {
         find(community.name) ? null : communityRepository.save(community)
     }
-    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicCodeService.class)
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommunityService.class)
 }
