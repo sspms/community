@@ -1,10 +1,24 @@
 version: '3'
 services:
+  user:
+    build:
+      context: ./user
+      dockerfile: user.dockerfile
+    links:
+      - mysqldb
+      - redisdb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/community
+      SPRING_REDIS_HOST: redisdb
+      SERVER_ADDRESS: user
+    ports:
+      - "18080:8080"
   community:
     build:
-      context: .
+      context: ./community
       dockerfile: community.dockerfile
     links:
+      - user
       - mysqldb
       - redisdb
     environment:

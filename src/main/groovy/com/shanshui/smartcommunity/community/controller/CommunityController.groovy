@@ -1,10 +1,9 @@
 package com.shanshui.smartcommunity.community.controller
 
+import com.shanshui.smartcommunity.clients.feign.client.api.UserClient
 import com.shanshui.smartcommunity.community.domain.Building
 import com.shanshui.smartcommunity.community.domain.Community
 import com.shanshui.smartcommunity.community.domain.Household
-import com.shanshui.smartcommunity.community.service.BuildingService
-import com.shanshui.smartcommunity.community.service.CommunityService
 import com.shanshui.smartcommunity.community.service.HouseholdService
 import com.shanshui.smartcommunity.user.domain.User
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,10 +21,8 @@ import org.springframework.web.bind.annotation.*
 @EnableCaching
 class CommunityController {
 
-    //@Autowired
-    //CommunityService communityService
-    //@Autowired
-    //BuildingService buildingService
+//    @Autowired
+//    UserClient userClient
     @Autowired
     HouseholdService householdService
 

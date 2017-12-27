@@ -1,0 +1,7 @@
+{
+  "number": "101",
+  "community": {"id":1},
+  "building": {"id":1},
+  "area": 2.5,
+  "unit": "m2"
+}

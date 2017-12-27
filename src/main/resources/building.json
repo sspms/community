@@ -1,0 +1,13 @@
+{
+  "number": "1",
+  "community": {"id":1},
+  "households": null,
+  "type": "MULTI_STORIED_BUILDING",
+  "floors": 6,
+  "houseHoldPerFloor": 2,
+  "hasElevator": true,
+  "direction": 'south',
+  "leader": null,
+  "charge": 2.5,
+  "unit": 'm2'
+}
