@@ -1,6 +1,5 @@
 package com.shanshui.smartcommunity.community.controller
 
-import com.shanshui.smartcommunity.clients.feign.client.api.UserClient
 import com.shanshui.smartcommunity.community.domain.Building
 import com.shanshui.smartcommunity.community.domain.Community
 import com.shanshui.smartcommunity.community.domain.Household
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.*
 @EnableCaching
 class CommunityController {
 
-//    @Autowired
-//    UserClient userClient
     @Autowired
     HouseholdService householdService
 
