@@ -1,10 +1,8 @@
 package com.shanshui.smartcommunity.community.domain
 
-import org.hibernate.annotations.Target
-import org.springframework.boot.autoconfigure.info.ProjectInfoProperties
+import com.shanshui.smartcommunity.user.domain.User
 
 import javax.persistence.*
-import com.shanshui.smartcommunity.user.domain.User
 
 @Entity
 class Household implements Serializable {
