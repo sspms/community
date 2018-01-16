@@ -1,6 +1,7 @@
 package com.shanshui.smartcommunity.community.domain
 
 import com.shanshui.smartcommunity.user.domain.User
+import org.springframework.format.annotation.DateTimeFormat
 
 import javax.persistence.*
 
@@ -21,4 +22,7 @@ class Household implements Serializable {
     @ManyToOne(targetEntity = Community.class)
     Community community
     String unit = 'm2'
+
+    @DateTimeFormat(style = 'yyyy-MM')
+    Date lastPropertyFeePayed
 }
